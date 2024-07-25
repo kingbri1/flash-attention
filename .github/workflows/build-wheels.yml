@@ -24,6 +24,7 @@ jobs:
     name: Build wheels for Python ${{ matrix.pyver }}, CUDA ${{ matrix.cuda }}, and Torch ${{ matrix.torchver }}
     runs-on: windows-2022
     strategy:
+      fail-fast: false
       matrix:
         pyver: ["3.8", "3.9", "3.10", "3.11", "3.12"]
         cuda: ["12.3.2"]
@@ -89,9 +90,10 @@ jobs:
           
           $env:MAX_JOBS = '1'
           $env:FLASH_ATTENTION_FORCE_BUILD = 'TRUE'
-          $env:FLASH_ATTENTION_FORCE_SINGLE_THREAD = 'TRUE'
-          
-          python -m build -n --wheel
+          $env:FLASH_ATTENTION_FORCE_CXX11_ABI = 'FALSE'
+          $env:BUILD_TARGET = "cuda"
+
+          python setup.py bdist_wheel --dist-dir=dist
           
           $wheel = (gi '.\dist\*.whl')[0]
           $wheelname = $wheel.name.replace("flash_attn-$packageVersion-","flash_attn-$packageVersion+cu$cudaVersion"+"torch${{ matrix.torchver }}cxx11abiFALSE-")
