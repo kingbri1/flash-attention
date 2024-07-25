@@ -27,7 +27,7 @@ jobs:
       matrix:
         pyver: ["3.8", "3.9", "3.10", "3.11", "3.12"]
         cuda: ["12.3.2"]
-        torchver: ["2.2.2", "2.3.1"]
+        torchver: ["2.2.2", "2.3.1", "2.4.0"]
     defaults:
       run:
         shell: pwsh
@@ -61,6 +61,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
+          $env:MAMBA_NO_LOW_SPEED_LIMIT = 1
           $cudaVersion = '${{ matrix.cuda }}'
           $cudaVersionPytorch = '${{ matrix.cuda }}'.Remove('${{ matrix.cuda }}'.LastIndexOf('.')).Replace('.','')
 
