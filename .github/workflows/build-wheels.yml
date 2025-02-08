@@ -92,11 +92,6 @@ jobs:
           $wheel = (gi '.\dist\*.whl')[0]
           $wheelname = $wheel.name.replace("flash_attn-$packageVersion-","flash_attn-$packageVersion+cu$cudaVersion"+"torch${{ matrix.torchver }}cxx11abiFALSE-")
           Move-Item $wheel.fullname ".\dist\$wheelname"
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: 'windows-wheels'
-          path: ./dist/*.whl
           
       - name: Upload files to a GitHub release
         uses: svenstaro/upload-release-action@2.6.1
