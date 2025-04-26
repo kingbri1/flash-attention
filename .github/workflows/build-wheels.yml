@@ -26,7 +26,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: ["windows-2022", "ubuntu-latest"]
+        os: ["windows-2022", "ubuntu-22.04"]
         pyver: ["3.10", "3.11", "3.12", "3.13"]
         cuda: ["12.4.1", "12.8.1"]
         torchver: ["2.5.1", "2.6.0", "2.7.0"]
@@ -39,11 +39,11 @@ jobs:
             cuda: '12.8.1'
           - torchver: '2.6.0'
             cuda: '12.8.1'
-          - os: 'ubuntu-latest'
+          - os: 'ubuntu-22.04'
             torchver: '2.5.1'
-          - os: 'ubuntu-latest'
+          - os: 'ubuntu-22.04'
             torchver: '2.6.0'
-          - os: 'ubuntu-latest'
+          - os: 'ubuntu-22.04'
             cuda: '12.4.1'
     defaults:
       run:
