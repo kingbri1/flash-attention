@@ -26,24 +26,20 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: ["windows-2022", "ubuntu-22.04"]
+        os: ["windows-2022"]
         pyver: ["3.10", "3.11", "3.12", "3.13"]
         cuda: ["12.4.1", "12.8.1"]
-        torchver: ["2.5.1", "2.6.0", "2.7.0"]
+        torchver: ["2.6.0", "2.7.0", "2.8.0"]
         exclude:
           - torchver: '2.5.1'
             pyver: '3.13'
-          - torchver: '2.7.0'
-            cuda: '12.4.1'
           - torchver: '2.5.1'
             cuda: '12.8.1'
           - torchver: '2.6.0'
             cuda: '12.8.1'
-          - os: 'ubuntu-22.04'
-            torchver: '2.5.1'
-          - os: 'ubuntu-22.04'
-            torchver: '2.6.0'
-          - os: 'ubuntu-22.04'
+          - torchver: '2.7.0'
+            cuda: '12.4.1'
+          - torchver: '2.8.0'
             cuda: '12.4.1'
     defaults:
       run:
